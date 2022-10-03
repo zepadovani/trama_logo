@@ -1,6 +1,5 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+//let dname = path.resolve(__dirname)
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
@@ -10,19 +9,6 @@ module.exports = {
         path: path.resolve(__dirname, '../dist')
     },
     devtool: 'source-map',
-    plugins:
-    [
-        new CopyWebpackPlugin({
-            patterns: [
-                {from: path.resolve(__dirname, '../static'),
-                to: path.resolve(__dirname, '../dist/static')}
-            ],
-          }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.html'),
-            minify: true
-        })
-    ],
     module:
     {
         rules:

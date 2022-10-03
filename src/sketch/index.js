@@ -2,7 +2,10 @@ import * as geom from 'toxiclibsjs/geom';
 import 'polybooljs'
 import PolyBool from 'polybooljs';
 
+// import * as path from 'path'
 
+// let dname = path.resolve(__dirname)
+let dname = window.location.pathname
 
 let showclip = false;
 let myfont;
@@ -54,8 +57,9 @@ export default function sketch(s) {
   
   s.preload = function(){ 
     console.log('preload')
-    myfont  = s.loadFont('../../static/fonts/LibreFranklin-Regular.ttf')
+    myfont  = s.loadFont('fonts/LibreFranklin-Regular.ttf')
     console.log('ok')
+    console.log(dname)
   }
   
 
