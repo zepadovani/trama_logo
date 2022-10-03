@@ -12,7 +12,7 @@ let myfont;
 
 
 export default function sketch(s) {
-  let scale1 = 1.5;
+  let scale1 = 1.2;
   let propfundo = 1;
   let scale2;
   let ix,iy;

@@ -1,0 +1,22 @@
+/*
+ * @copyright 2016 Sean Connelly (@voidqk), http://syntheti.cc
+ * @license MIT
+ * @preserve Project Home: https://github.com/voidqk/polybooljs
+ */
+
+/*! p5.js v1.4.2 July 21, 2022 */
+
+/*!!
+ *  SVGCanvas v2.0.3
+ *  Draw on SVG using Canvas's 2D Context API.
+ *
+ *  Licensed under the MIT license:
+ *  http://www.opensource.org/licenses/mit-license.php
+ *
+ *  Author:
+ *  Kerry Liu
+ *  Zeno Zeng
+ *
+ *  Copyright (c) 2014 Gliffy Inc.
+ *  Copyright (c) 2021 Zeno Zeng
+ */
