@@ -50,35 +50,34 @@ export default function sketch(s) {
     cVars = colors[colorscheme-1] 
     }
   }
-
+  scale1 = Number((wx*(85/100)*7*(1/4)*(1/24)*(1/100)).toFixed(2));
   num_fundoX = 24;
   num_fundoY = 7;
   cwidth = 100*scale1*1/7*4*num_fundoX;
   cheight = 100*scale1*1/7*4*num_fundoY;
-  // console.log("w",cwidth,wx,(cwidth/wx)*100)
   
-  scale1 = Number((wx*(85/100)*7*(1/4)*(1/24)*(1/100)).toFixed(2));
-  // console.log("scale",scale1)
-
   
   scale2 = scale1/propfundo;
   
   s.preload = function(){ 
-    // console.log('preload')
     myfont  = s.loadFont('fonts/LibreFranklin-Regular.ttf')
-    // console.log('ok')
   }
   
 
   s.setup = function(){ 
     s.createCanvas(cwidth, cheight, s.SVG);
     s.colorMode(s.HSL,100);
+    s.noLoop();
+  }
+
+  s.draw = function(){
     let color1 = s.color(cVars[0][0],cVars[0][1],cVars[0][2])
     let color2 = s.color(cVars[1][0],cVars[1][1],cVars[1][2])
     let color3 = s.color(cVars[2][0],cVars[2][1],cVars[2][2])
     let tramaParams = [[0,[0,0],color2],[1,[0,0],color2],[2,[2,0],color1],[3,[5,0],color1]]
     let tramaletters = []
     let fundoletters = []
+    s.clear();
     
 
     s.background(1,0,100);
@@ -126,7 +125,6 @@ export default function sketch(s) {
       }
     }
 
-// console.log(fundoletters.length)
 let randA = arithmSer(0,fundoletters.length-1).shuffle().firstN(numColoridos);
 
 randA.forEach(function(i){
@@ -159,9 +157,22 @@ s.text('Research',(ix+6+1/7)*scale1*100 , (iy+1)*scale1*100);
 
   }
 
- 
+s.windowResized = function x() {
+  let nw;
+  nw = s.windowWidth;
+  scale1 = Number((nw*(85/100)*7*(1/4)*(1/24)*(1/100)).toFixed(2));
+  scale2 = scale1/propfundo;
+  num_fundoX = 24;
+  num_fundoY = 7;
+  cwidth = 100*scale1*1/7*4*num_fundoX;
+  cheight = 100*scale1*1/7*4*num_fundoY;
+  s.resizeCanvas(cwidth, cheight,true);
+  s.redraw();
+}  
 
 }
+
+
 
 
 class TLetter {
@@ -339,19 +350,6 @@ class TLetter {
       
       p.noStroke();
       p.fill(this.cor)
-      // console.log("polys",polys)
-      // let polylens = []
-
-      // for(let p of polys){
-      //   polylens.push(p.vertices.length)
-      // }
-      // console.log("plens",polylens)
-      //arr.reduce((a, b) => Math.min(a, b));
-
-      
-
-
-      //for(let poly of polys[0]){ //ver solucao melhor?
       
       let poly = polys[0]
 
@@ -360,8 +358,7 @@ class TLetter {
       let devx,devy;
       devx = rectclip.getBounds().x + rectclip.getBounds().width/2;
       devy = rectclip.getBounds().y + rectclip.getBounds().height/2; 
-      // console.log("xy",devx,devy);
-      // console.log(poly);
+      
       poly.translate(-devx,-devy);
       rectclip.translate(-devx,-devy);
       poly = poly.rotate(this.rot * p.HALF_PI)  
@@ -448,3 +445,39 @@ function arithmSer(start, end) {
   }
   return myArray;
 }
+
+//var svgData = $("#figureSvg")[0].outerHTML;
+// var svgData = document.getElementById("p5container")
+// let svgs = document.getElementsByClassName('p5Canvas').length
+// const el = document.querySelector(".myclass");
+let thecanvas;
+// window.onload = function()
+// { 
+
+// }
+
+// document.addEventListener("DOMContentLoaded", function(e) {
+//   thecanvas = document.getElementById("p5container").getElementsByClassName('p5Canvas')
+// console.log(thecanvas)
+// })
+
+// const elm = await waitForElm('p5Canvas');
+
+//let svgs = document.querySelector("svg");
+// var serializer = new XMLSerializer();
+// var source = serializer.serializeToString(svgs);
+
+// console.log(source)
+// var serializer = new XMLSerializer();
+// var source = serializer.serializeToString(svgs);
+// // .getElementsByTagName('svg');
+// //document.getElementById("svg")
+// console.log(source)
+// var svgBlob = new Blob([svgData], {type:"image/svg+xml;charset=utf-8"});
+// var svgUrl = URL.createObjectURL(svgBlob);
+// var downloadLink = document.createElement("a");
+// downloadLink.href = svgUrl;
+// downloadLink.download = "newesttree.svg";
+// document.body.appendChild(downloadLink);
+// downloadLink.click();
+// document.body.removeChild(downloadLink);
