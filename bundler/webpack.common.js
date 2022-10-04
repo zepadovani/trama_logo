@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path')
 let dname = path.resolve(__dirname)
 
@@ -26,6 +27,14 @@ module.exports = {
             minify: true
         })
     ],
+    optimization: {
+        minimize: true,
+        // minimizer: [
+        //     new TerserPlugin({
+        //       include: /\/includes/,
+        //     }),
+        //   ],
+      },
     module:
     {
         rules:

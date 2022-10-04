@@ -2,13 +2,16 @@ import * as geom from 'toxiclibsjs/geom';
 import 'polybooljs'
 import PolyBool from 'polybooljs';
 
-// import * as path from 'path'
-
-// let dname = path.resolve(__dirname)
-let dname = window.location.pathname
 
 let showclip = false;
 let myfont;
+let win = window,
+    doc = document,
+    docElem = doc.documentElement,
+    body = doc.getElementsByTagName('body')[0],
+    wx = win.innerWidth || docElem.clientWidth || body.clientWidth;
+    // wy = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+
 
 
 export default function sketch(s) {
@@ -26,7 +29,7 @@ export default function sketch(s) {
   
 
   const queryString = window.location.search;
-  console.log("qstr:",queryString);
+  // console.log("qstr:",queryString);
   const urlParams = new URLSearchParams(queryString);
   let parscale = urlParams.get('scale')
   let colorscheme = urlParams.get('colorscheme')
@@ -52,14 +55,18 @@ export default function sketch(s) {
   num_fundoY = 7;
   cwidth = 100*scale1*1/7*4*num_fundoX;
   cheight = 100*scale1*1/7*4*num_fundoY;
+  // console.log("w",cwidth,wx,(cwidth/wx)*100)
+  
+  scale1 = Number((wx*(85/100)*7*(1/4)*(1/24)*(1/100)).toFixed(2));
+  // console.log("scale",scale1)
+
   
   scale2 = scale1/propfundo;
   
   s.preload = function(){ 
-    console.log('preload')
+    // console.log('preload')
     myfont  = s.loadFont('fonts/LibreFranklin-Regular.ttf')
-    console.log('ok')
-    console.log(dname)
+    // console.log('ok')
   }
   
 
@@ -119,7 +126,7 @@ export default function sketch(s) {
       }
     }
 
-console.log(fundoletters.length)
+// console.log(fundoletters.length)
 let randA = arithmSer(0,fundoletters.length-1).shuffle().firstN(numColoridos);
 
 randA.forEach(function(i){
