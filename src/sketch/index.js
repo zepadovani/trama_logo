@@ -452,13 +452,17 @@ function arithmSer(start, end) {
 }
 
 
-function hide (elements) {
-  elements = elements.length ? elements : [elements];
-  for (var index = 0; index < elements.length; index++) {
-    elements[index].style.display = 'none';
-  }
-}
+// function showdiv (elements) {
+//   elements = elements.length ? elements : [elements];
+//   for (var index = 0; index < elements.length; index++) {
+//     elements[index].style.visibility = 'true';
+//   }
+// }
 
-if(!download){
-  hide(document.getElementById('downloaddiv'))
+if(download){
+  console.log("download!")
+  document.getElementById('downloaddiv').style.display = 'flex';
+  // showdiv()
+}else{
+  console.log('no download!')
 }
