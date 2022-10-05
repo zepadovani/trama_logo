@@ -12,6 +12,11 @@ let win = window,
     wx = win.innerWidth || docElem.clientWidth || body.clientWidth;
     // wy = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
 
+const queryString = window.location.search;
+// console.log("qstr:",queryString);
+const urlParams = new URLSearchParams(queryString);    
+let download =  urlParams.get('download')
+
 
 
 export default function sketch(s) {
@@ -28,13 +33,13 @@ export default function sketch(s) {
   let cVars = [[1.111,77,48],[0,0,33],[0,0,33]];
   
 
-  const queryString = window.location.search;
-  // console.log("qstr:",queryString);
-  const urlParams = new URLSearchParams(queryString);
+  
   let parscale = urlParams.get('scale')
   let colorscheme = urlParams.get('colorscheme')
+ 
   parscale = Number(parscale)
   colorscheme = Number(colorscheme)
+  
  // console.log("scale:",parscale, typeof parscale);
 
   if(parscale){
@@ -446,38 +451,14 @@ function arithmSer(start, end) {
   return myArray;
 }
 
-//var svgData = $("#figureSvg")[0].outerHTML;
-// var svgData = document.getElementById("p5container")
-// let svgs = document.getElementsByClassName('p5Canvas').length
-// const el = document.querySelector(".myclass");
-let thecanvas;
-// window.onload = function()
-// { 
 
-// }
+function hide (elements) {
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'none';
+  }
+}
 
-// document.addEventListener("DOMContentLoaded", function(e) {
-//   thecanvas = document.getElementById("p5container").getElementsByClassName('p5Canvas')
-// console.log(thecanvas)
-// })
-
-// const elm = await waitForElm('p5Canvas');
-
-//let svgs = document.querySelector("svg");
-// var serializer = new XMLSerializer();
-// var source = serializer.serializeToString(svgs);
-
-// console.log(source)
-// var serializer = new XMLSerializer();
-// var source = serializer.serializeToString(svgs);
-// // .getElementsByTagName('svg');
-// //document.getElementById("svg")
-// console.log(source)
-// var svgBlob = new Blob([svgData], {type:"image/svg+xml;charset=utf-8"});
-// var svgUrl = URL.createObjectURL(svgBlob);
-// var downloadLink = document.createElement("a");
-// downloadLink.href = svgUrl;
-// downloadLink.download = "newesttree.svg";
-// document.body.appendChild(downloadLink);
-// downloadLink.click();
-// document.body.removeChild(downloadLink);
+if(!download){
+  hide(document.getElementById('downloaddiv'))
+}

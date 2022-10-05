@@ -11,13 +11,28 @@
 body { height: 100%;
     background: #444444;
 }
+.button {
+  background-color: #F32323; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+}
     </style>
 </head>
 <body>
-    <div id='mains' style="width:100%; height: 100%; display: flex; align-items: center; justify-content: center; vertical-align: center; ">
+    
+    <div id='mains' style="width:100%;height: 70%; display: flex; align-items: center; justify-content: center; vertical-align: center; "> 
         <div id='p5container'></div>
-        
     </div>
+    <div id='downloaddiv' style="width:100%; height: 8%; display: flex; align-items: center; justify-content: center; vertical-align: center; ">
+        <button class="button" onclick="downloadSVGAsText()" >Download SVG</button>
+</div><br/>
+    <br/>
+    
     
 
 </body>
